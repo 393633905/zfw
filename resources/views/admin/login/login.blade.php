@@ -13,7 +13,7 @@
 <div class="header"></div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
-        @include('admin.error')
+        @include('admin.common.error')
         <form class="form form-horizontal" action="" method="post">
             {{csrf_field()}}
             <div class="row cl">

@@ -117,6 +117,7 @@ return [
     'url'         => ':attribute 格式不正确。',
     'uuid'        => ':attribute 必须是有效的 UUID。',
     'captcha'=>':attribute 请输入正确的验证码。',
+    'mobile'=>':attribute 格式不正确。',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +177,8 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
-        'username'=>'用户昵称',
-        'code'=>'验证码'
+        'username'              =>'该账号',
+        'code'                  =>'验证码',
+        'mobile'                =>'手机号'
     ],
 ];
