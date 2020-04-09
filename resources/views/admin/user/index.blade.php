@@ -14,10 +14,14 @@
 
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
-    <span class="l"><a href="javascript:;" class="btn btn-danger radius deleteAll"><i class="icon-trash"></i> 批量删除</a>
-    <a href="{{ route('admin.user.create') }}" class="btn btn-primary radius"><i class="icon-plus"></i> 添加用户</a></span>
+        <span class="l">
+            <a href="javascript:;" class="btn btn-danger radius deleteAll"><i class="icon-trash"></i> 批量删除</a>
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary radius"><i class="icon-plus"></i> 添加用户</a>
+             <a href="{{ route('admin.user.restore') }}" class="btn btn-warning radius"><i class="icon-plus"></i> 回收站</a>
+        </span>
         <span class="r">共有数据：<strong>{{$users->total()}}</strong> 条</span>
     </div>
+
     <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>
         <tr class="text-c">
@@ -43,7 +47,7 @@
             @endif
 
             <td>{{$v->id}}</td>
-            <td><u style="cursor:pointer" class="text-primary" onclick="user_show('10001','360','','张三','user-show.html')">{{$v->username}}</u></td>
+            <td><u style="cursor:pointer" class="text-primary">{{$v->username}}</u></td>
             <td>{{$v->truename}}</td>
             <td>{{$v->gender}}</td>
             <td>{{$v->mobile}}</td>

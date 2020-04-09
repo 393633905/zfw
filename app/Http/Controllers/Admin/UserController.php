@@ -2,27 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use http\Client\Curl\User;
+use App\Http\Controllers\Admin\BaseController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Users;
 use Illuminate\Mail\Message;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
-    protected $page_size=10;
-
-    public function __construct()
-    {
-        $this->page_size=config('page.page_size');
-    }
 
     /**
      * 用户列表展示：
      */
     public function index(){
         //分页查询所有用户数据：
-        $user_model=Users::paginate($this->page_size);
+        $user_model=Users::paginate(10);
         return view('admin.user.index',['users'=>$user_model]);
     }
 

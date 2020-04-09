@@ -26,15 +26,21 @@
     <aside class="Hui-aside">
         <div class="menu_dropdown bk_2">
             <dl id="menu-admin">
-                <dt><i class="Hui-iconfont">&#xe62d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
                         <li><a data-href="{{route('admin.user.index')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
-                        <li><a data-href="{{route('admin.user.restore')}}" data-title="回收站" href="javascript:void(0)">回收站</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a data-href="{{route('admin.role.index')}}" data-title="角色列表" href="javascript:void(0)">角色列表</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a data-href="{{route('admin.node.index')}}" data-title="权限列表" href="javascript:void(0)">权限列表</a></li>
                     </ul>
                 </dd>
             </dl>
-
         </div>
     </aside>
     <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
