@@ -40,10 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        //解决接口登录：
+        'apiserver' => [
+            'driver' => 'session',
+            'provider' => 'apiuser',
+        ],
 
+        //passport用于权限验证：
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'passport',
+            'provider' => 'apiuser',
         ],
     ],
 
@@ -68,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Users::class,
+        ],
+
+        'apiuser' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Apiuser::class,
         ],
 
         // 'users' => [

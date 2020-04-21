@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/css/pagination.css" />
 @section('cnt')
     @include('admin.common.success')
+    @include('admin.common.error')
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 权限管理 <span class="c-gray en">&gt;</span> 权限列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
     <form class="text-c" method="get" action="{{route('admin.node.index')}}"> 权限搜索：
@@ -48,9 +49,9 @@
             <td class="user-status"><span class="label label-success">已启用</span></td>
             <td class="f-14 user-manage">
                 <!--因laravel中传入id时，若是从对象中获取id，则可以直接传入该对象，省略id-->
-                <a href="{{route('admin.node.edit',$v)}}" class="label label-secondary radius">修改</a>
+                {!! \App\Models\Node::find($v['id'])->btn('admin.node.edit','修改') !!}
                 @if($v['id'] !=auth()->id())
-                        <a href="{{route('admin.node.destroy',$v)}}" class="label label-danger radius del">删除</a>
+                    {!! \App\Models\Node::find($v['id'])->btn('admin.node.destroy','删除') !!}
                 @endif
             </td>
         </tr>

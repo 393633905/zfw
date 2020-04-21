@@ -5,10 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 //软删除
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\Btn;
 class BaseModel extends Model{
 
     //使用软删除：
-    use SoftDeletes;
+    use SoftDeletes,Btn;
+    //软删除字段：
+    protected $dates=['deleted_at'];
     //黑名单
     protected  $guarded=[];
 
@@ -31,6 +34,20 @@ class BaseModel extends Model{
             }
         }
 
+        return $temp;
+    }
+
+    /**
+     * 将数组转换为树状结构：
+     */
+    public function tree_list($datas,$pid=0){
+        $temp=[];
+        foreach($datas as $data){
+            if($data['pid']==$pid){
+                $data['son']=$this->tree_list($datas,$data['id']);
+                $temp[]=$data;
+            }
+        }
         return $temp;
     }
 }

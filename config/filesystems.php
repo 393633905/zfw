@@ -48,6 +48,36 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'article' => [
+            'driver' => 'local',
+            //上传位置：public_path对应着项目public目录
+            'root' => public_path('uploads/article'),
+        ],
+
+        'fang_attr' => [
+            'driver' => 'local',
+            //上传位置：public_path对应着项目public目录
+            'root' => public_path('uploads/fang_attr'),
+        ],
+
+        'fang_owner' => [
+            'driver' => 'local',
+            //上传位置：public_path对应着项目public目录
+            'root' => public_path('uploads/fang_owner'),
+        ],
+
+        'fang' => [
+            'driver' => 'local',
+            //上传位置：public_path对应着项目public目录
+            'root' => public_path('uploads/fang'),
+        ],
+
+        'wechat' => [
+            'driver' => 'local',
+            //上传位置：public_path对应着项目public目录
+            'root' => public_path('uploads/wechat'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -79,7 +79,7 @@
                     let url=evt.target.action;
                     let {code,msg}=await $.post(url,this.node);
                     if(code==200){
-                        window.location="{{route('admin.node.index')}}";
+                        layer.msg(msg,{icon:1,time:1000});
                     }else{
                         layer.msg(msg,{icon:2,time:1000});
                     }

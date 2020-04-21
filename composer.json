@@ -7,9 +7,13 @@
     "require": {
         "php": ">=7.0.0",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "elasticsearch/elasticsearch": "7.2.2",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/passport": "4.0",
+        "laravel/tinker": "~1.0",
+        "maatwebsite/excel": "^3.1",
+        "paragonie/random_compat": "2.*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

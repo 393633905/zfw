@@ -23,8 +23,6 @@ class LoginController extends Controller
             $param=$this->validate($request,$rule);
             //登录：
             if(auth()->attempt($param)){//成功
-//                $user=auth()->user();
-//                dd($user->toArray());
                 //成功跳转：
                 return redirect(route('admin.index'));
             }else{

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Admin\IndexController@index');
 
 //引入admin模块下的路由：
 include base_path('routes/admin/admin.php');

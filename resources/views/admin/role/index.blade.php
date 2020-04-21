@@ -22,8 +22,8 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
             <th width="80">ID</th>
-            <th width="100">角色名</th>
-            <th width="130">加入时间</th>
+            <th width="200">角色名</th>
+            <th width="100">加入时间</th>
             <th width="70">状态</th>
             <th width="100">操作</th>
         </tr>
@@ -33,15 +33,14 @@
         <tr class="text-c">
             <td><input type="checkbox" value="{{$v->id}}" name="id[]" ></td>
             <td>{{$v->id}}</td>
-            <td><u style="cursor:pointer" class="text-primary">{{$v->name}}</u></td>
+            <td>{{$v->name}}</td>
             <td>{{$v->created_at}}</td>
             <td class="user-status"><span class="label label-success">已启用</span></td>
             <td class="f-14 user-manage">
+               {!! $v->btn('admin.role.node','分配权限') !!}
                 <!--因laravel中传入id时，若是从对象中获取id，则可以直接传入该对象，省略id-->
-                <a href="{{route('admin.role.edit',$v)}}" class="label label-secondary radius">修改</a>
-                @if($v->id !=auth()->id())
-                        <a href="{{route('admin.role.destroy',$v)}}" class="label label-danger radius del">删除</a>
-                @endif
+                   {!! $v->btn('admin.role.edit','修改') !!}
+                   {!! $v->btn('admin.role.destroy','删除') !!}
             </td>
         </tr>
             @endforeach

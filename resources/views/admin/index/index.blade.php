@@ -3,15 +3,15 @@
 @section('cnt')
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
-            <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">好客租房后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>
+            <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="{{route('admin.index')}}">好客租房后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>
                 <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
                 <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 
                 <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                     <ul class="cl">
-                        <li>超级管理员</li>
+                        <li>{{auth()->user()->truename}}</li>
                         <li class="dropDown dropDown_hover">
-                            <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <a href="#" class="dropDown_A">{{auth()->user()->username}} <i class="Hui-iconfont">&#xe6d5;</i></a>
                             <ul class="dropDown-menu menu radius box-shadow">
                                 <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
                                 <li><a href="{{route('admin.logout')}}">退出</a></li>
@@ -25,22 +25,18 @@
     </header>
     <aside class="Hui-aside">
         <div class="menu_dropdown bk_2">
+            @foreach($menus as $menu)
             <dl id="menu-admin">
-                <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt><i class="Hui-iconfont">&#xe62d;</i> {{$menu['name']}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
+                    @foreach($menu['son'] as $son)
                     <ul>
-                        <li><a data-href="{{route('admin.user.index')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
+                        <li><a data-href="{{ route($son['route_name']) }}" data-title="{{$son['name']}}" href="javascript:void(0)">{{$son['name']}}</a></li>
                     </ul>
-
-                    <ul>
-                        <li><a data-href="{{route('admin.role.index')}}" data-title="角色列表" href="javascript:void(0)">角色列表</a></li>
-                    </ul>
-
-                    <ul>
-                        <li><a data-href="{{route('admin.node.index')}}" data-title="权限列表" href="javascript:void(0)">权限列表</a></li>
-                    </ul>
+                    @endforeach
                 </dd>
             </dl>
+            @endforeach
         </div>
     </aside>
     <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

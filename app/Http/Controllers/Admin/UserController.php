@@ -15,8 +15,8 @@ class UserController extends BaseController
      */
     public function index(){
         //分页查询所有用户数据：
-        $user_model=Users::paginate(10);
-        return view('admin.user.index',['users'=>$user_model]);
+        $users=Users::paginate(10);
+        return view('admin.user.index',compact('users'));
     }
 
     /**
@@ -141,4 +141,31 @@ class UserController extends BaseController
         return redirect(route('admin.user.index'))->with('success','修改成功');
     }
 
+    /**
+     * 给当前用户分配角色页面：
+     * 1.获取所有角色
+     * 2.获取当前用户所属角色id
+     */
+    public function role(int $id){
+        //获取所有角色：
+        $roles=\App\Models\Role::all();
+        //获取当前用户所属角色id:
+        $role_id=Users::find($id)->role_id;
+        return view('admin.user.show_role',compact('id','roles','role_id'));
+    }
+
+    /**
+     * 给当前用户分配角色功能：
+     */
+    public function storeRole(Request $request,int $id){
+       try{
+           $role_id=$this->validate($request,[
+               'role_id'=>'required'
+           ]);
+           Users::where('id',$id)->update($role_id);
+           return redirect(route('admin.user.index'))->with('success','分配角色成功');
+       }catch (\Exception $exception){
+           return redirect(route('admin.user.index'))->withErrors(['分配角色失败']);
+       }
+    }
 }
