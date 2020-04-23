@@ -56,7 +56,7 @@ Route::group(['middleware'=>'auth:api','prefix'=>'v1','namespace'=>'Api'],functi
     //获取指定属性的房源数据
     Route::get('fang/attrfang','FangController@getAttrWithFang');
 
-    //所有属性信息：
+    //所有属性信息列表：
     Route::get('fangattr/get','FangAttrController@get');
 
     //es模糊搜索：
@@ -66,7 +66,7 @@ Route::group(['middleware'=>'auth:api','prefix'=>'v1','namespace'=>'Api'],functi
     Route::get('fang/collect/get','FangController@getCollect');
     //删除房源收藏：
     Route::delete('fang/collect/destroy','FangController@destroyCollect');
-    //设置收藏：
+    //添加收藏：
     Route::post('fang/collect/set','FangController@setCollect');
 
 });

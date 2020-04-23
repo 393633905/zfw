@@ -119,14 +119,18 @@ class FangController extends BaseController
     }
 
 
-    //获取房源收藏：根据用户openid来获取
+    //获取指定房源收藏：根据用户openid来获取
     public function getCollect(Request $request){
-        $openid=$request->get('openid');
-        if(empty($openid)){
-           return $this->responseError('10000','请求参数不合规范','401');
+        try{
+            $param=$this->validate($request,[
+                'openid'=>'required',
+                'fang_id'=>'required'
+            ]);
+            $data=FangCollect::where('openid',$param['openid'])->where('fang_id',$param['fang_id'])->get(['id','openid','fang_id']);
+            return $this->responseSuccess($data);
+        }catch (\Exception $exception){
+            return $this->responseError('10000','请求参数不合规范','401');
         }
-        $data=FangCollect::where('openid',$openid)->get(['id','openid','fang_id']);
-        return $this->responseSuccess($data);
     }
 
     //删除指定收藏：根据传入的openid和房源id进行删除
@@ -145,7 +149,7 @@ class FangController extends BaseController
         }
     }
 
-    //设置收藏：根据openid和fang_id进行设置
+    //添加收藏：根据openid和fang_id进行设置
     public function setCollect(Request $request){
         try{
             $param=$this->validate($request,[
