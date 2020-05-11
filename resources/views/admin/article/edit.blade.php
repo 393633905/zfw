@@ -114,7 +114,7 @@
             },
             methods:{
                 async addArticle(evt){//发送请求添加文章
-                    this.article.content=this.ue.getContent();
+                    this.article.content=this.ue.getContent();//文章内容
                     let body=JSON.stringify(this.article);
                     let ret=await fetch(evt.target.action,{
                       method:'PUT',

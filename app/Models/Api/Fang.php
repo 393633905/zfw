@@ -9,14 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fang extends BaseModel
 {
-//    protected $appends=['shi_ting'];
-//
-
-    protected $appends=['fang_banner','fang_shi_ting'];
+    protected $appends=['fang_banner','fang_shi_ting'];//追加字段，用于自定义显示表中不存在的字段；可自由组合
 
     protected $hidden=['fang_shi','fang_ting'];
+
     //当要使用访问器自定义字段时：先使用appends追加字段，但是得提前把处理过程中需要用到的字段查询出来
-    public function getFangBannerAttribute(){
+    public function getFangBannerAttribute(){//此用到了fang_pic字段，那么在查询的时候必须存在此字段
         return config('wechat.host').explode('#',$this->attributes['fang_pic'])[0];
     }
 

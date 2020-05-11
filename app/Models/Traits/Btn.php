@@ -11,8 +11,7 @@ trait Btn
      * @return string
      */
     public function btn($route_name,string $name){
-        if(session('user_node')){
-            $nodes=array_merge(array_filter(session('user_node')),config('rbac.no_check'));
+        if($nodes=session('user_node')){
             if(auth()->user()->username==config('rbac.super_admin') || in_array($route_name,$nodes)){
                 switch ($name){
                     case '修改':

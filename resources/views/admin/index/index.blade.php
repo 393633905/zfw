@@ -25,7 +25,7 @@
     </header>
     <aside class="Hui-aside">
         <div class="menu_dropdown bk_2">
-            @foreach($menus as $menu)
+            @foreach($menuData as $menu)
             <dl id="menu-admin">
                 <dt><i class="Hui-iconfont">&#xe62d;</i> {{$menu['name']}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>

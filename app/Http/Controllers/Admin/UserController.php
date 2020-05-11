@@ -15,7 +15,7 @@ class UserController extends BaseController
      */
     public function index(){
         //分页查询所有用户数据：
-        $users=Users::paginate(10);
+        $users=Users::paginate($this->pageSize);
         return view('admin.user.index',compact('users'));
     }
 
@@ -41,7 +41,8 @@ class UserController extends BaseController
         $param=$this->validate($request,$rule);
         //入库：
         $users_model=Users::create($param);
-        //发送邮件：
+
+        //建议放入消息队列中，进行发送邮件：
         \Mail::send('admin.common.mail',['user'=>$users_model,'pwd'=>$param['password']],function(Message $message) use($users_model){
             $message->to($users_model->email);//发送给谁
             $message->subject('注册成功');
@@ -82,7 +83,7 @@ class UserController extends BaseController
      * 用户回收站页面：
      */
     public function  restore(){
-        $user_model = Users::onlyTrashed()->paginate(10);
+        $user_model = Users::onlyTrashed()->paginate($this->pageSize);
         return view('admin.user.restore', ['users' => $user_model]);
     }
 
@@ -105,7 +106,7 @@ class UserController extends BaseController
      */
     public function rollbackAll(Request $request){
         $ids=$request->all('id');
-        //批量删除
+        //批量还原
         foreach ($ids['id'] as $id){
             Users::where('id',$id)->restore();
         }

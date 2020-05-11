@@ -14,6 +14,7 @@ class Users extends Model
     protected $table='users';
     protected $guarded=['remember_token'];
     protected $hidden=['password'];
+    protected $rememberTokenName = '';//不使用rememberToken
 
     //定义与角色关联模型：以用户表来说，用户与角色属于关系：
     public function role(){

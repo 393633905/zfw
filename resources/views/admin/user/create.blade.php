@@ -122,7 +122,7 @@
                    },
                    password_confirmation:{
                        required:'确认密码必填',
-                       equalTo:'#password'
+                       equalTo:'#password'//输入的值必须和xx相同
                    },
                    mobile:{
                        required:'手机号必填'
@@ -133,5 +133,11 @@
                }
            });
         });
+
+        // 手机号验证
+        jQuery.validator.addMethod("mobile", function(value, element) {
+            let tel = /^(\+86\-)?1[3-9]{1}\d{9}$/;
+            return this.optional(element) || (tel.test(value));
+        }, "请正确填写您的手机号");
     </script>
 @endsection

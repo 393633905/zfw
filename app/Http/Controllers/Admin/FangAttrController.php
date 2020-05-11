@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Fang;
 use App\Models\FangAttr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,6 @@ class FangAttrController extends Controller
     public function index(FangAttr $fangattr)
     {
         $data=$fangattr->getFangAttrList();
-
         return view('admin.fangattr.index',compact('data'));
     }
 
@@ -40,6 +40,7 @@ class FangAttrController extends Controller
     //房源属性保存：
     public function store(Request $request)
     {
+
         //表单验证通过后入库：
         $this->validate($request,[
             'name'=>'required'
@@ -65,7 +66,7 @@ class FangAttrController extends Controller
     //房源属性修改页面
     public function edit(FangAttr $fangattr)
     {
-        $data=$fangattr::where('pid',0)->get();
+        $data=$fangattr::where('pid',0)->get();//所有的房源
         return view('admin.fangattr.edit',compact('data','fangattr'));
     }
 
@@ -87,10 +88,13 @@ class FangAttrController extends Controller
     //房源属性删除功能：
     public function destroy(FangAttr $fangattr)
     {
+        //判断所有房源中是否与有关联的属性：
+       // $fang=Fang::where('')->get();
         if($fangattr->delete()){
             return ['code'=>200,'msg'=>'删除成功'];
         }else{
             return ['code'=>500,'msg'=>'删除失败'];
         }
+
     }
 }

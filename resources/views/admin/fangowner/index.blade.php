@@ -128,6 +128,7 @@
     }, () => {
       // 选中的用户
       let ids = $('input[name="id[]"]:checked');
+      console.log(ids);
       // 删除的ID
       let id = [];
       // 循环

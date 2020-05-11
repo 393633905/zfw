@@ -178,7 +178,7 @@ return [
         'available'             => '可用的',
         'size'                  => '大小',
         'username'              =>'该账号',
-        'code'                  =>'验证码',
+        'captcha'                  =>'验证码',
         'mobile'                =>'手机号'
     ],
 ];

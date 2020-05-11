@@ -22,7 +22,7 @@ class FangController extends BaseController
             'body' => [
                 'query' => [
                     'match' => [
-                        'desn'=>[
+                        'fang_desn'=>[
                             'query' => $keyword
                         ]
                     ]
@@ -145,11 +145,11 @@ class FangController extends BaseController
                    ]
                ]
            ];
+           //创建索引（相当于数据库）
            $response = $client->indices()->create($params);
         }catch (\Exception $exception){
             return $exception->getMessage();
        }
-
     }
 
     /**

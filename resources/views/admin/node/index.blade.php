@@ -39,11 +39,7 @@
             <td class="text-l">{{$v['level_html']}} {{$v['name']}}</td>
             <td class="text-l">{{$v['route_name']}}</td>
             <td>
-                @if($v['is_menu']==1)
-                    <span class="label label-success">是</span>
-                    @else
-                    <span class="label label-danger">否</span>
-                @endif
+                {!! $v['is_menu'] !!}
             </td>
             <td>{{$v['created_at']}}</td>
             <td class="user-status"><span class="label label-success">已启用</span></td>

@@ -126,10 +126,10 @@ class RoleController extends BaseController
      */
     public function showNode(Role $role){//$role相当于$role=find(id);
         //获取此角色所拥有的权限：id
-
+        //pluck(value) ： 返回指定key的值组成的集合
+        //pluck(value, key) : 返回指定value,key的值组成的集合
         $selfNodesId=$role->nodes()->pluck('id')->toArray();
-
-        //获取所有权限：
+        //获取所有权限：(以无限极分类格式显示)
         $allNodes=(new Node())->getNodeCateList();
         return view('admin.role.show_node',['role'=>$role,'allNodes'=>$allNodes,'selfNodesId'=>$selfNodesId]);
     }
@@ -145,7 +145,8 @@ class RoleController extends BaseController
             $this->validate($request,[
                 'node_id'=>'required'
             ]);
-            //表关联：使用sync：先删除，再添加
+            //在多对多的关系中，可以使用sync([id数组])向中间表插入对应关联数据记录。
+	        //所有没放在数组里的 IDs 都会从中间表里移除。所以，这步操作完成后，只有在数组里的 IDs 会被保留在中间表中。
             $role->nodes()->sync($request->get('node_id'));
             return redirect(route('admin.role.index'))->with('success','分配权限成功');
         }catch (\Exception $exception){

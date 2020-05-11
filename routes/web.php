@@ -14,4 +14,5 @@
 Route::get('/', 'Admin\IndexController@index');
 
 //引入admin模块下的路由：
+//base_path:项目根目录绝对路径
 include base_path('routes/admin/admin.php');

@@ -72,7 +72,7 @@
                 },//本地化
                 searching: false,//关闭本地搜索框
                 serverSide: true,//开启服务器模式，
-                ajax:{//发送ajax请求
+                ajax:{//搜索发送ajax请求
                     type:'get',
                     url:"{{route('admin.article.index')}}",
                     data:function(ret){//使用函数动态获取表单中的参数值进行传递：
@@ -88,7 +88,7 @@
                     {'data':'id'},
                     {'data':'title'},
                     {'data':'created_at'},
-                    {'data':'action','defaultContent': '默认值'},
+                    {'data':'action','defaultContent': '默认值'},//功能按钮
                 ],
             });
 

@@ -56,7 +56,7 @@ class FangOwnerController extends BaseController
      */
     public function store(Request $request)
     {
-        dd($request->except(['_token','file']));
+        //dd($request->except(['_token','file']));
         FangOwner::create($request->except(['_token','file']));
         return redirect(route('admin.fangowner.index'))->with('success','添加房东成功');
     }
@@ -79,7 +79,7 @@ class FangOwnerController extends BaseController
 
     public function delfile(Request $request){
         if($url=$request->get('url')){
-            unlink(public_path($url));
+            unlink(public_path($url));//public_path()是laravel中的方法，用于返回public目录
             return ['code'=>200,'msg'=>'删除成功'];
         }
     }

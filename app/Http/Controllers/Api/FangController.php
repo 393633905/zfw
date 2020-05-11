@@ -40,8 +40,8 @@ class FangController extends BaseController
 
             $field_name=$request->get('field');
 
-            $parent_id=FangAttr::where('field_name',$field_name)->value('id');
-            $fang_model=FangAttr::where('pid',$parent_id)->get(['id','name','icon']);
+            $parent_id=FangAttr::where('field_name',$field_name)->value('id');//根据对应的属性field_name的id
+            $fang_model=FangAttr::where('pid',$parent_id)->get(['id','name','icon']);//获取对应属性的子属性
 
             if($field_name=='fang_rent_class'){
                 foreach ($fang_model as $item){

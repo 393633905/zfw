@@ -17,10 +17,11 @@ class IndexController extends Controller
         //已经登录：
         //显示菜单列表：通过session获取该用户拥有的权限，然后显示即可；
         if(session('user_node')){
-            $menus=(new Node())->getUserMenuData(session('user_node'));
-        }
+            //将数据转换为树状结构：
+            $menuData=(new Node())->getUserMenuData(session('user_node'));
 
-        return view('admin/index/index',compact('menus'));
+        }
+        return view('admin/index/index',compact('menuData'));
     }
 
     public function welcome(){

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Node;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,6 +25,17 @@ class LoginController extends Controller
             $param=$this->validate($request,$rule);
             //登录：
             if(auth()->attempt($param)){//成功
+                $userModel=auth()->user();
+                //获取权限：
+                if($userModel->username==config('rbac.super_admin')){
+                    //如果是超级管理员，则直接从权限表获取所有数据：
+                    $nodeData=Node::all()->pluck('route_name','id')->toArray();
+                }else{
+                    $roleModel=$userModel->role;
+                    $nodeData=$roleModel->nodes->pluck('route_name','id')->toArray();
+                }
+
+                session(['user_node'=>$nodeData]);
                 //成功跳转：
                 return redirect(route('admin.index'));
             }else{
@@ -34,6 +47,7 @@ class LoginController extends Controller
 
     public function logout(){
         auth()->logout();
+
         //with也是将信息存入特殊的session中（闪存）
         return redirect(route('admin.login'))->with('success','退出成功');
     }

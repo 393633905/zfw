@@ -1,12 +1,12 @@
 <?php
 
-//prefix表示地址前缀，namespance表示命名空间名称，as表示路由别名前缀
+//prefix表示路由前缀，namespance表示命名空间名称，as表示路由别名前缀
 Route::group(['prefix'=>'admin','namespace'=>'Admin','as'=>'admin.'],function(){
     //用户登录页面和功能：
     Route::get('logout','LoginController@logout')->name('logout');
     Route::any('login','LoginController@index')->name('login');
-    //退出登录：
 
+    //退出登录：
     //绑定中间件：
     //使用中间件验证用户是否登录：
     Route::group(['middleware'=>'check_login'],function(){

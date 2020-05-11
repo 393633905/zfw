@@ -10,6 +10,5 @@ $factory->define(Users::class, function (Faker $faker) {
         'email'=>$faker->email,
         'mobile'=>$faker->phoneNumber,
         'gender'=>['先生','女士'][rand(0,1)],
-
     ];
 });

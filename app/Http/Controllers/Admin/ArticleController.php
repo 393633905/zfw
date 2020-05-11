@@ -31,9 +31,10 @@ class ArticleController extends Controller
 
 
             if(!empty($datemin) && !empty($datemax)){
-                $datemin=date('Y-m-d H:m:s',strtotime($datemin));
-                $datemax=date('Y-m-d H:m:s',strtotime($datemax.'23:59:59'));
-                $query->whereBetween('created_at',[$datemin,$datemax]);
+                //strtotime：将指定格式转换为时间戳，date表示将时间戳转换为指定格式
+                $datemin=date('Y-m-d H:i:s',strtotime($datemin.'00:00:00'));
+                $datemax=date('Y-m-d H:i:s',strtotime($datemax.'23:59:59'));
+                $query->whereBetween('created_at',[$datemin,$datemax]);//where created_at between(1,2)
             }
             if(!empty($title)){
                 $query->where('title','like',"%{$title}%");
@@ -143,6 +144,8 @@ class ArticleController extends Controller
                 if(is_file(public_path($article->pic))){
                     unlink(public_path($article->pic));
                 }
+            }else{
+                unset($article->pic);
             }
             $article->update($request->except('action'));
             

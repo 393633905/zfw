@@ -25,7 +25,7 @@
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input  name="password" type="password" value="123456" class="input-text size-L">
+                    <input  name="password" type="password" value="" class="input-text size-L">
                 </div>
             </div>
 {{--            <div class="row cl">--}}

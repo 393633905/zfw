@@ -8,7 +8,7 @@
 <div class="pd-20">
     <form class="text-c" method="get" action="{{route('admin.role.index')}}"> 角色搜索：
         <input type="text" class="input-text" style="width:250px" placeholder="输入角色名称"  name="name" value="{{request()->get('name')}}">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜角色</button>
+        <button type="submit" class="btn btn-success" ><i class="icon-search"></i> 搜角色</button>
     </form>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">

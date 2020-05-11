@@ -1,5 +1,5 @@
 <?php
-function curl($url,$data,$post,$https){
+function curl($url,$data,$post=true,$https=true){
     $resource=curl_init($url);
     if($post){
         curl_setopt($resource,CURLOPT_POST,true);//post请求
